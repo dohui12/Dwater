@@ -1,28 +1,23 @@
-from typing import Literal
-
+from typing import List, Literal
 from pydantic import BaseModel, Field
 
-MAX_LENGTH = 3
-
-
-class InputModel(BaseModel):
-    word: str = Field(
-        alias='word',
-        description='삼행시에 사용될 초성 단어를 입력해주세요!',
-        default='지스트',
-        min_length=MAX_LENGTH,
-        max_length=MAX_LENGTH,
-        pattern=rf'^[a-z|가-힣]{{{MAX_LENGTH}}}$',
+class BeerInputModel(BaseModel):
+    type: str = Field(
+        default="Lager",
+        description="선호하는 맥주의 종류를 입력하세요. 예: Lager, Ale, Stout"
     )
-
+    flavor: str = Field(
+        default="Crisp",
+        description="선호하는 맥주의 풍미를 입력하세요. 예: Crisp, Rich, Fruity"
+    )
     llm_type: Literal['chatgpt', 'huggingface'] = Field(
         alias='Large Language Model Type',
         description='사용할 LLM 종류',
-        default='chatgpt',
+        default='chatgpt'
     )
 
-
-class OutputModel(BaseModel):
-    output: str = Field(
-        description='삼행시 결과물',
+class BeerOutputModel(BaseModel):
+    recommendations: List[str] = Field(
+        description="추천 맥주 리스트"
     )
+
