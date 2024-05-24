@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field
 
 class InputModel(BaseModel):
     latest_news: str = Field(
-        default='태풍 노루가 한국에 상륙',
+        description='감정을 이야기하면 맥주를 추천해주세요',
     )
 
     llm_type: Literal['chatgpt', 'huggingface'] = Field(
