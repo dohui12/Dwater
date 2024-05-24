@@ -4,7 +4,7 @@ from fastapi import APIRouter
 
 from llm.chat import build
 from llm.store import LLMStore
-from models.acrostic_generator import BeerInputModel, BeerOutputModel
+from models.acrostic_generator import InputModel, OutputModel
 
 # Configure API router
 router = APIRouter(
@@ -15,7 +15,7 @@ NAME = os.path.basename(__file__)[:-3]
 store = LLMStore()
 
 @router.post(f'/recommend-beer/{NAME}')
-async def recommend_beer(input: BeerInputModel) -> BeerOutputModel:
+async def recommend_beer(input: InputModel) -> OutputModel:
     chain = build(
         name=NAME,
         llm=store.get(input.llm_type)
@@ -25,4 +25,4 @@ async def recommend_beer(input: BeerInputModel) -> BeerOutputModel:
 
     # Let's assume the LLM returns a comma-separated list of beer recommendations
     recommendations = response.split(',')
-    return BeerOutputModel(recommendations=recommendations)
+    return OutputModel(recommendations=recommendations)
