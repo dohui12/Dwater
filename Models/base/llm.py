@@ -12,7 +12,12 @@ class BaseLLMModel(BaseModel, metaclass=ABCMeta):
 
     @abstractmethod
     def build(self) -> LLM:
-        pass
+        
+        api_key = os.getenv("OPENAI_API_KEY")
+
+        return ChatOpenAI(
+            openai_api_key=api_key  # API 키를 인자로 전달
+        )
 
     def __hash__(self) -> int:
         return hash(self.name)
@@ -30,7 +35,7 @@ class ChatGPTModel(BaseLLMModel):
 
 
 class HuggingFaceEndpointModel(BaseLLMModel):
-    endpoint_url: Url = Url('http://huggingface-tgi/')
+    endpoint_url: Url = Url('http://api-inference.huggingface.co/models/beomi/Llama-3-Open-Ko-8B]')
     temperature: float = 0.8
 
     def build(self) -> LLM:
