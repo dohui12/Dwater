@@ -4,7 +4,7 @@ from fastapi import APIRouter
 
 from llm.chat import build
 from llm.store import LLMStore
-from models.acrostic_generator import InputModel, OutputModel
+from models.beer_recommendation import InputModel, OutputModel
 
 # Configure API router
 router = APIRouter(
