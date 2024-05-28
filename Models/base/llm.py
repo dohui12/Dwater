@@ -9,19 +9,14 @@ from pydantic_core import Url
 
 class BaseLLMModel(BaseModel, metaclass=ABCMeta):
     name: str = Field(description='LLM name')
+    api_key: str = "sk-proj-MiILONnlytwwn2RhuUTkT3BlbkFJNv7pJidczm1wHjUCGsY8"  # API 키 직접 할당
 
     @abstractmethod
     def build(self) -> LLM:
-        
-        api_key = os.getenv("OPENAI_API_KEY")
-
-        return ChatOpenAI(
-            openai_api_key=api_key  # API 키를 인자로 전달
-        )
+        return ChatOpenAI(openai_api_key=self.api_key)
 
     def __hash__(self) -> int:
         return hash(self.name)
-
 
 class ChatGPTModel(BaseLLMModel):
     model: str = 'gpt-4o'
@@ -29,9 +24,10 @@ class ChatGPTModel(BaseLLMModel):
 
     def build(self) -> LLM:
         return ChatOpenAI(
-            model_name=self.model,  # type: ignore
+            model_name=self.model,
             temperature=self.temperature,
-        )  # type: ignore
+            openai_api_key=self.api_key  # 클래스 변수에서 API 키 사용
+        )
 
 
 class HuggingFaceEndpointModel(BaseLLMModel):
