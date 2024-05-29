@@ -2,7 +2,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-from Models.base.image_preview import ImagePreviewModel
+from models.base.image_preview import ImagePreviewModel
 
 
 class InputModel(BaseModel):

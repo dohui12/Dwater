@@ -66,7 +66,7 @@ def render(model: PageModel) -> None:
     function: _Function = getattr(function_module, 'execute')
 
     # Call the function
-    output_model: Basemodel | None = function(
+    output_model: BaseModel | None = function(
         page=model,
         key=key,
         model=inputs,
