@@ -14,7 +14,7 @@ router = APIRouter(
 NAME = os.path.basename(__file__)[:-3]
 store = LLMStore()
 
-@router.post(f'/recommend-beer/{NAME}')
+@router.post(f'/func/{NAME}')
 async def recommend_beer(input: InputModel) -> OutputModel:
     chain = build(
         name=NAME,

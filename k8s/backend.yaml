@@ -20,7 +20,7 @@ spec:
       containers:
         - name: server
           # TODO(user): change to your image
-          image: docker.io/dohuikim/mobilex-exp-backend:v0.5
+          image: docker.io/dohuikim/mobilex-exp-backend:v0.6
           env:
             - name: BASE_URL
               value: /api/v1
