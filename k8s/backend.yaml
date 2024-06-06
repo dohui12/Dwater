@@ -57,4 +57,4 @@ metadata:
   name: openai
 stringData:
   # TODO(user): change your own token!
-  OPENAI_API_KEY: "sk-proj-MiILONnlytwwn2RhuUTkT3BlbkFJNv7pJidczm1wHjUCGsY8"
+  OPENAI_API_KEY: ""
