@@ -18,7 +18,7 @@ class InputModel(BaseModel):
     )
 
 class OutputModel(BaseModel):
-    recommendations: List[str] = Field(
+    recommendations: str = Field(
         description="추천 맥주 리스트"
     )
 

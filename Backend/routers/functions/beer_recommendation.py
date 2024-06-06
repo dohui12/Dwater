@@ -24,5 +24,5 @@ async def recommend_beer(input: InputModel) -> OutputModel:
     response = chain.invoke({'input_context': prompt})
 
     # Let's assume the LLM returns a comma-separated list of beer recommendations
-    recommendations = response.split(',')
+    recommendations = response
     return OutputModel(recommendations=recommendations)
