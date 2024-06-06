@@ -9,7 +9,7 @@ from pydantic_core import Url
 
 class BaseLLMModel(BaseModel, metaclass=ABCMeta):
     name: str = Field(description='LLM name')
-    api_key: str = "sk-proj-MiILONnlytwwn2RhuUTkT3BlbkFJNv7pJidczm1wHjUCGsY8"  # API 키 직접 할당
+    api_key: str = ""  # API 키 직접 할당
 
     @abstractmethod
     def build(self) -> LLM:
